@@ -3,14 +3,9 @@ Keystone is a toy version of a clustered key-value service. New server nodes can
 
 ## Quickstart
 
-<!-- Prerequisites:
-go get -u google.golang.org/grpc
-go get -u github.com/golang/protobuf/protoc-gen-go
- -->
-
-Install this package:
+Install this package and prerequisites:
 ```
-go get -u github.com/ace0/keystoneLight
+go get -u google.golang.org/grpc github.com/golang/protobuf/protoc-gen-go github.com/ace0/keystoneLight
 ```
 
 Start a single-server cluster:
