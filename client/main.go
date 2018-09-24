@@ -11,10 +11,6 @@ import (
   pb "github.com/ace0/keystoneLight/keystone"
 )
 
-const (
-	address = "localhost:1990"
-)
-
 type client struct{
 	kc pb.KeystoneClient
 }
@@ -58,7 +54,6 @@ func main() {
 
 	// Parse args
 	server,key,value := os.Args[1],os.Args[2],""
-	// var value string
 	if len(os.Args) > 3 {
 		value = os.Args[3]
 	}
@@ -69,6 +64,7 @@ func main() {
 	defer conn.Close()
 	client := client{kc: pb.NewKeystoneClient(conn)}
 
+	// Read or write
 	if len(value) > 0 {
 		client.writeAndPrint(key, value)
 	} else {
