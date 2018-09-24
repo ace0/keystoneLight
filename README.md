@@ -40,3 +40,12 @@ go run go/src/github.com/ace0/keystoneLight/client/main.go localhost:1990 "So Sm
 go run go/src/github.com/ace0/keystoneLight/client/main.go localhost:1991 "So Smooth"
 ```
 
+## Limitations
+
+This is a toy service and some limitations apply.
+
+No locking. Data races may exist within a server if simultaneous write requests are received.
+
+Network segmentation. If the network is segmented, the cluster's state will drift if writes are received. There is no anti-entropy or reconcilliation when cluster nodes re-connect.
+
+Consistency is not guaranteed if there are simultanous writes to the same key. The current implementation can be thought of as read quorum = 1 and write quorum = n (because nodes issue writes to all known peers); however, two-phase commit is not used, so this does not guarantee consistency. (Adding 2PC would achieve this at slight overhead.)
