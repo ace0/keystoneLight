@@ -42,8 +42,6 @@ go run go/src/github.com/ace0/keystoneLight/client/main.go localhost:1991 "So Sm
 
 ## Limitations
 
-This is a toy service and some limitations apply.
-
 No locking. Data races may exist within a server if simultaneous write requests are received.
 
 Network segmentation. If the network is segmented, the cluster's state will drift if writes are received. There is no anti-entropy or reconcilliation when cluster nodes re-connect.
