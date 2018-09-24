@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package keystone;
+
+service Keystone {
+  // Client interface: read/write key-value pairs
+  rpc Read(Key) returns (Value) {}
+  rpc Write(KeyValue) returns (Nothing) {}
+
+  // Server-server interface: cluster management
+  rpc ServerWrite(KeyValue) returns (Nothing) {}
+  rpc GetClusterInfo(Nothing) returns (ClusterInfo){}
+  rpc Join(ServerInfo) returns (Nothing) {}
+}
+
+// Sometimes grpc feels overkill for simple things.
+message Key {
+  string key = 1;
+}
+message Value {
+  string value = 1;
+}
+message Nothing {}
+message KeyValue {
+  string key = 1;
+  string value = 2;
+}
+message ServerInfo {
+  string address = 1;
+}
+message ClusterInfo {
+  repeated string peers = 1;
+  map<string,string> dstore = 2;
+}
